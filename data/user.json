@@ -12,33 +12,5 @@
     "pangkat_golongan": "Pembina / IV-a",
     "nip": "198001012005011001",
     "createdAt": "2026-01-01T08:00:00.000Z"
-  },
-  {
-    "id": "usr-guru-1",
-    "nama": "Ustadz Ahmad Fauzi, S.Pd.I",
-    "username": "ahmad.fauzi",
-    "email": "ahmad@madrasah.sch.id",
-    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
-    "role": "guru",
-    "status": "terverifikasi",
-    "jabatan": "Guru Mata Pelajaran",
-    "mata_pelajaran": "Fiqih & Akidah Akhlak",
-    "pangkat_golongan": "Penata Muda / III-a",
-    "nip": "198805122014021003",
-    "createdAt": "2026-01-05T09:15:00.000Z"
-  },
-  {
-    "id": "usr-guru-2",
-    "nama": "Ustadzah Siti Aminah, S.Pd",
-    "username": "siti.aminah",
-    "email": "siti@madrasah.sch.id",
-    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
-    "role": "guru",
-    "status": "menunggu_verifikasi",
-    "jabatan": "Guru Mata Pelajaran",
-    "mata_pelajaran": "Bahasa Arab",
-    "pangkat_golongan": "Penata Muda Tk. I / III-b",
-    "nip": "199203152019032008",
-    "createdAt": "2026-02-10T14:30:00.000Z"
   }
 ]
