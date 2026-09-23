@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "no_absen": "1",
+    "nis_lokal": "121132050003240001",
+    "nama": "ABDAN ADLUANSYAH",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mudu9olzpxy",
+    "createdAt": "2026-09-23T08:26:20.759Z"
+  },
+  {
+    "no_absen": "2",
+    "nis_lokal": "121132050003240002",
+    "nama": "ADINDA NATASYALY",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "P",
+    "id": "mur-mudu9om05sf",
+    "createdAt": "2026-09-23T08:26:20.760Z"
+  },
+  {
+    "no_absen": "3",
+    "nis_lokal": "121132050003240003",
+    "nama": "AFIKA ALIFIA AZZAHRA",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "P",
+    "id": "mur-mudu9om0yxy",
+    "createdAt": "2026-09-23T08:26:20.760Z"
+  },
+  {
+    "no_absen": "4",
+    "nis_lokal": "121132050003240004",
+    "nama": "AGMAL MAULANA IBRAHIM",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mudu9om0uoi",
+    "createdAt": "2026-09-23T08:26:20.760Z"
+  }
+]
