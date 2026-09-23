@@ -1,5 +1,145 @@
 [
   {
+    "id": "log-mudnz6e7",
+    "user_id": "usr-guru-mudnwut5",
+    "user_nama": "Raden Mohammad Rizki Septiana",
+    "aksi": "User Raden Mohammad Rizki Septiana (guru) berhasil masuk ke sistem",
+    "waktu": "2026-09-23T05:30:12.895Z"
+  },
+  {
+    "id": "log-mudnz492",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User Administrator Madrasah (admin) keluar (logout)",
+    "waktu": "2026-09-23T05:30:10.118Z"
+  },
+  {
+    "id": "log-mudnxopz",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "Menyetujui & memverifikasi akun guru: Raden Mohammad Rizki Septiana",
+    "waktu": "2026-09-23T05:29:03.335Z"
+  },
+  {
+    "id": "log-mudnxlxj",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User Administrator Madrasah (admin) berhasil masuk ke sistem",
+    "waktu": "2026-09-23T05:28:59.719Z"
+  },
+  {
+    "id": "log-mudnx7s7",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User Administrator Madrasah (admin) keluar (logout)",
+    "waktu": "2026-09-23T05:28:41.383Z"
+  },
+  {
+    "id": "log-mudnx2rd",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User Administrator Madrasah (admin) berhasil masuk ke sistem",
+    "waktu": "2026-09-23T05:28:34.873Z"
+  },
+  {
+    "id": "log-mudnwut6",
+    "user_id": "system",
+    "user_nama": "System",
+    "aksi": "Pendaftaran akun guru baru: Raden Mohammad Rizki Septiana (Menunggu Verifikasi)",
+    "waktu": "2026-09-23T05:28:24.570Z"
+  },
+  {
+    "id": "log-mudnw3hb",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User Administrator Madrasah (admin) keluar (logout)",
+    "waktu": "2026-09-23T05:27:49.151Z"
+  },
+  {
+    "id": "log-mudnuj6a",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "Memperbarui profil madrasah & tahun pelajaran aktif",
+    "waktu": "2026-09-23T05:26:36.178Z"
+  },
+  {
+    "id": "log-mudkgxyd",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User Administrator Madrasah (admin) berhasil masuk ke sistem",
+    "waktu": "2026-09-23T03:52:03.301Z"
+  },
+  {
+    "id": "log-mudkgo93",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User Administrator Madrasah (admin) keluar (logout)",
+    "waktu": "2026-09-23T03:51:50.727Z"
+  },
+  {
+    "id": "log-mudkglix",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User admin mengubah kata sandi",
+    "waktu": "2026-09-23T03:51:47.193Z"
+  },
+  {
+    "id": "log-mudkfix5",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "Menghapus massal 2 akun guru",
+    "waktu": "2026-09-23T03:50:57.161Z"
+  },
+  {
+    "id": "log-mudkf7ox",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "Menghapus massal 8 data nilai sumatif",
+    "waktu": "2026-09-23T03:50:42.609Z"
+  },
+  {
+    "id": "log-mudkeyzd",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "Menghapus massal 2 catatan jurnal harian",
+    "waktu": "2026-09-23T03:50:31.321Z"
+  },
+  {
+    "id": "log-mudkeqs9",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "Menghapus massal 5 data rombel/kelas",
+    "waktu": "2026-09-23T03:50:20.697Z"
+  },
+  {
+    "id": "log-mudkelii",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "Menghapus massal 13 data siswa",
+    "waktu": "2026-09-23T03:50:13.866Z"
+  },
+  {
+    "id": "log-mudkdpx3",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "User Administrator Madrasah (admin) berhasil masuk ke sistem",
+    "waktu": "2026-09-23T03:49:32.919Z"
+  },
+  {
+    "id": "log-mudkactu",
+    "user_id": "usr-guru-mudg57f1",
+    "user_nama": "Raden Mohammad Rizki Septiana, S,Hum",
+    "aksi": "User Raden Mohammad Rizki Septiana, S,Hum (englishstudymts2) keluar (logout)",
+    "waktu": "2026-09-23T03:46:55.986Z"
+  },
+  {
+    "id": "log-mudk8z30",
+    "user_id": "usr-guru-mudg57f1",
+    "user_nama": "Raden Mohammad Rizki Septiana, S,Hum",
+    "aksi": "Sinkronisasi tarik data dari GitHub Repository",
+    "waktu": "2026-09-23T03:45:51.516Z"
+  },
+  {
     "id": "log-001",
     "user_id": "usr-admin-1",
     "user_nama": "Administrator Madrasah",
