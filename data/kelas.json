@@ -7,5 +7,13 @@
     "keterangan": "",
     "createdAt": "2026-09-23T08:25:26.959Z",
     "updatedAt": "2026-09-23T08:25:51.848Z"
+  },
+  {
+    "id": "kls-9b",
+    "nama_kelas": "9B",
+    "tingkat": "9",
+    "wali_kelas": "",
+    "keterangan": "",
+    "createdAt": "2026-09-23T08:26:10.375Z"
   }
 ]
