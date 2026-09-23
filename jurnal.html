@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jurnal Pembelajaran Guru — SIM Administrasi Madrasah</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+  <aside class="app-sidebar" id="sidebar-container"></aside>
+
+  <div class="app-main">
+    <header class="app-topbar" id="topbar-container"></header>
+
+    <main class="page-content">
+      
+      <!-- Top Action Bar -->
+      <div class="card-madrasah p-3 mb-4">
+        <div class="row g-2 align-items-center justify-content-between">
+          <!-- Left: Filter Kelas & Periode & Search -->
+          <div class="col-lg-8 d-flex flex-wrap gap-2 align-items-center">
+            <div style="min-width: 160px;">
+              <select class="form-select form-select-sm" id="filterKelasJurnal">
+                <option value="all">Semua Kelas</option>
+              </select>
+            </div>
+
+            <div style="width: 130px;">
+              <select class="form-select form-select-sm" id="filterBulanJurnal">
+                <option value="0">Semua Bulan</option>
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+              </select>
+            </div>
+
+            <div style="width: 95px;">
+              <select class="form-select form-select-sm" id="filterTahunJurnal">
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+              </select>
+            </div>
+
+            <div class="input-group input-group-sm" style="max-width: 220px;">
+              <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+              <input type="text" class="form-control" id="searchJurnal" placeholder="Cari materi / tujuan...">
+            </div>
+
+            <span class="badge bg-emerald-soft" id="jurnalCountBadge">0 Jurnal</span>
+          </div>
+
+          <!-- Right: Buttons -->
+          <div class="col-lg-4 text-lg-end d-flex flex-wrap gap-2 justify-content-lg-end">
+            <input type="file" id="inputImportJurnalCSV" accept=".csv" class="d-none">
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-filetype-csv me-1"></i> CSV
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                <li><a class="dropdown-item py-2 small" href="javascript:void(0)" id="btnExportJurnalCSV"><i class="bi bi-download me-2 text-primary"></i> Export Jurnal CSV</a></li>
+                <li><a class="dropdown-item py-2 small" href="javascript:void(0)" onclick="document.getElementById('inputImportJurnalCSV').click()"><i class="bi bi-upload me-2 text-success"></i> Import Jurnal CSV</a></li>
+              </ul>
+            </div>
+
+            <button class="btn btn-sm btn-madrasah" onclick="Jurnal.openAdd()">
+              <i class="bi bi-pencil-square me-1"></i> Tulis Jurnal Harian
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bulk Selection Toolbar for Jurnal -->
+      <div class="bulk-selection-bar d-none" id="selectionBarJurnal">
+        <div class="d-flex align-items-center gap-2">
+          <span class="selection-count-badge" id="selectedJurnalCount">0 Dipilih</span>
+          <span class="small text-white-50">catatan jurnal terpilih</span>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+          <button class="btn btn-sm btn-outline-light" id="btnExportSelectedJurnal">
+            <i class="bi bi-download me-1"></i> Export Terpilih (CSV)
+          </button>
+          <button class="btn btn-sm btn-danger" id="btnDeleteSelectedJurnal">
+            <i class="bi bi-trash-fill me-1"></i> Hapus Terpilih
+          </button>
+          <button class="btn btn-sm btn-light" id="btnClearSelectionJurnal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Card Jurnal Table -->
+      <div class="card-madrasah">
+        <div class="card-header-custom bg-light">
+          <h6 class="fw-bold mb-0"><i class="bi bi-journal-bookmark-fill text-primary me-2"></i>Rekap Jurnal Pembelajaran Guru</h6>
+          <div class="d-flex gap-2">
+            <a href="javascript:void(0)" class="btn btn-sm btn-outline-madrasah" id="btnGoToPrintJurnal">
+              <i class="bi bi-printer me-1"></i> Cetak Format Jurnal
+            </a>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-custom table-hover">
+            <thead>
+              <tr>
+                <th class="th-select"><input type="checkbox" class="form-check-input form-check-input-custom" id="selectAllJurnal" title="Pilih Semua"></th>
+                <th class="text-center" style="width: 45px;">No</th>
+                <th style="width: 140px;">Tanggal & Kelas</th>
+                <th style="width: 280px;">Tujuan Pembelajaran / Materi</th>
+                <th style="width: 200px;">Ketercapaian Pembelajaran</th>
+                <th class="text-center" style="width: 100px;">Jml Hadir</th>
+                <th>Catatan Kendala & Refleksi</th>
+                <th class="text-end" style="width: 100px;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tableJurnalBody">
+              <!-- Injected by jurnal.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODAL: FORM JURNAL PEMBELAJARAN                              -->
+<!-- ============================================================ -->
+<div class="modal fade" id="modalJurnal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+      <div class="modal-header border-bottom pb-3">
+        <h5 class="modal-title fw-bold" id="modalJurnalTitle">Tulis Jurnal Pembelajaran</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="formJurnal">
+        <div class="modal-body p-4">
+          <input type="hidden" id="jurnalId">
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="jurnalTanggal" class="form-label">Tanggal Mengajar <span class="text-danger">*</span></label>
+              <input type="date" class="form-control" id="jurnalTanggal" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="jurnalKelas" class="form-label">Kelas / Rombel <span class="text-danger">*</span></label>
+              <select class="form-select" id="jurnalKelas" required>
+                <!-- Injected options -->
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="jurnalTujuan" class="form-label">Tujuan Pembelajaran / Pokok Bahasan <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="jurnalTujuan" rows="2" placeholder="Contoh: Memahami ketentuan rukun dan syarat sah Shalat Gerhana" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="jurnalKetercapaian" class="form-label">Ketercapaian / Indikator Hasil Belajar</label>
+            <textarea class="form-control" id="jurnalKetercapaian" rows="2" placeholder="Contoh: 85% siswa mampu mempraktikkan tata cara shalat kusuf dengan tertib"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label for="jurnalJumlahHadir" class="form-label">Jumlah Siswa Hadir</label>
+              <input type="number" class="form-control" id="jurnalJumlahHadir" min="0">
+              <small class="form-text" id="syncHadirInfo"></small>
+            </div>
+            <div class="col-md-7 mb-3">
+              <label for="jurnalCatatan" class="form-label">Catatan Tambahan / Refleksi Mengajar</label>
+              <input type="text" class="form-control" id="jurnalCatatan" placeholder="Contoh: Diskusi berlangsung kondusif; 2 siswa izin">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-madrasah px-4" id="btnSaveJurnal">Simpan Jurnal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core Scripts -->
+<script src="js/github-api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/jurnal.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  await window.App.init('jurnal');
+  window.Jurnal.init();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "log-001",
+    "user_id": "usr-admin-1",
+    "user_nama": "Administrator Madrasah",
+    "aksi": "Sistem diinisialisasi dengan data awal",
+    "waktu": "2026-09-15T08:00:00.000Z"
+  },
+  {
+    "id": "log-002",
+    "user_id": "usr-guru-1",
+    "user_nama": "Ustadz Ahmad Fauzi, S.Pd.I",
+    "aksi": "Input data presensi harian kelas VII-A (15 September 2026)",
+    "waktu": "2026-09-15T09:30:00.000Z"
+  },
+  {
+    "id": "log-003",
+    "user_id": "usr-guru-1",
+    "user_nama": "Ustadz Ahmad Fauzi, S.Pd.I",
+    "aksi": "Input jurnal pembelajaran kelas VII-A",
+    "waktu": "2026-09-15T10:15:00.000Z"
+  },
+  {
+    "id": "log-004",
+    "user_id": "usr-guru-1",
+    "user_nama": "Ustadz Ahmad Fauzi, S.Pd.I",
+    "aksi": "Input rekap nilai sumatif bab 1 kelas VII-A",
+    "waktu": "2026-09-16T11:00:00.000Z"
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "khd-001",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-001",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-002",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-002",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-003",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-003",
+    "status": "sakit",
+    "catatan": "Surat dokter terlampir"
+  },
+  {
+    "id": "khd-004",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-004",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-005",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-005",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-006",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-006",
+    "status": "izin",
+    "catatan": "Acara keluarga"
+  },
+  {
+    "id": "khd-007",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-007",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-008",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-008",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-009",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-001",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-010",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-002",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-011",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-003",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-012",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-004",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-013",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-005",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-014",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-006",
+    "status": "hadir",
+    "catatan": ""
+  },
+  {
+    "id": "khd-015",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-007",
+    "status": "alpa",
+    "catatan": "Tanpa keterangan"
+  },
+  {
+    "id": "khd-016",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "murid_id": "mrd-008",
+    "status": "hadir",
+    "catatan": ""
+  }
+]

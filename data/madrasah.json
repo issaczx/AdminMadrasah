@@ -1,0 +1,31 @@
+{
+  "madrasah": {
+    "nama": "Madrasah Tsanawiyah Negeri 1 Teladan",
+    "alamat": "Jl. Pendidikan Islami No. 45, Kompleks Islamic Center, Jakarta",
+    "telp": "(021) 78901234 / 0812-3456-7890",
+    "email": "info@mtsn1teladan.sch.id",
+    "website": "https://mtsn1teladan.sch.id",
+    "nsm": "121131710001",
+    "npsn": "20108899",
+    "akreditasi": "A (Unggul)",
+    "kota": "Jakarta",
+    "logo": ""
+  },
+  "kepala_madrasah": {
+    "nama": "Dr. H. Ahmad Dahlan, M.Pd.I",
+    "nip": "197508152000031002",
+    "pangkat_golongan": "Pembina Utama Muda / IV-c",
+    "jabatan": "Kepala Madrasah"
+  },
+  "tahun_pelajaran": "2025/2026",
+  "semester": "Ganjil",
+  "kktp_default": 75,
+  "github_config": {
+    "owner": "",
+    "repo": "",
+    "branch": "main",
+    "token": "",
+    "is_connected": false,
+    "last_sync": null
+  }
+}

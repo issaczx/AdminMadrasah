@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dasbor Utama — SIM Administrasi Madrasah</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="app-wrapper">
+  <!-- Sidebar Container -->
+  <aside class="app-sidebar" id="sidebar-container"></aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="app-main">
+    <!-- Topbar Container -->
+    <header class="app-topbar" id="topbar-container"></header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+      
+      <!-- Welcome Banner -->
+      <div class="card-madrasah p-4 mb-4" style="background: linear-gradient(135deg, #0f766e 0%, #0d9488 60%, #14b8a6 100%); color: #ffffff;">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span class="badge bg-white text-dark mb-2 px-3 py-1 fw-bold">Selamat Datang</span>
+            <h3 class="fw-bold mb-1" id="dashGreeting">Ahlan wa Sahlan, Guru Madrasah!</h3>
+            <p class="mb-0 text-white-50" id="dashSubGreeting">Sistem siap membantu pengelolaan administrasi pembelajaran, presensi, jurnal, dan rekapitulasi nilai secara akurat.</p>
+          </div>
+          <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+            <a href="kehadiran.html" class="btn btn-light fw-bold text-dark me-2 shadow-sm">
+              <i class="bi bi-calendar-check me-1"></i> Presensi Hari Ini
+            </a>
+            <a href="jurnal.html" class="btn btn-outline-light fw-bold">
+              <i class="bi bi-pencil-square me-1"></i> Buat Jurnal
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Guru Banner (Admin Only) -->
+      <div id="adminPendingAlert" class="d-none"></div>
+
+      <!-- Quick Stat Cards -->
+      <div class="row g-3 mb-4">
+        <!-- Total Murid -->
+        <div class="col-xl-3 col-sm-6">
+          <div class="stat-card stat-emerald">
+            <div class="stat-info">
+              <span>Total Siswa/i</span>
+              <h3 id="statTotalMurid">0</h3>
+            </div>
+            <div class="stat-icon bg-emerald-soft">
+              <i class="bi bi-people-fill text-primary-emerald"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Kelas -->
+        <div class="col-xl-3 col-sm-6">
+          <div class="stat-card stat-indigo">
+            <div class="stat-info">
+              <span>Rombongan Belajar</span>
+              <h3 id="statTotalKelas">0</h3>
+            </div>
+            <div class="stat-icon" style="background: #eef2ff; color: #6366f1;">
+              <i class="bi bi-door-open-fill"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kehadiran Rate -->
+        <div class="col-xl-3 col-sm-6">
+          <div class="stat-card stat-amber">
+            <div class="stat-info">
+              <span>Tingkat Kehadiran</span>
+              <h3 id="statKehadiranRate">0%</h3>
+            </div>
+            <div class="stat-icon bg-amber-soft">
+              <i class="bi bi-pie-chart-fill text-warning"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rata-rata Nilai -->
+        <div class="col-xl-3 col-sm-6">
+          <div class="stat-card stat-rose">
+            <div class="stat-info">
+              <span>Rata-Rata Nilai</span>
+              <h3 id="statRataNilai">0.0</h3>
+            </div>
+            <div class="stat-icon bg-rose-soft">
+              <i class="bi bi-award-fill text-danger"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Shortcuts Row -->
+      <div class="row g-3 mb-4">
+        <div class="col-12">
+          <div class="card-madrasah p-3">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-lightning-charge-fill text-warning me-2"></i>Aksi Cepat & Jalan Pintas</h6>
+            </div>
+            <div class="row g-2">
+              <div class="col-6 col-md-3">
+                <a href="data-master.html" class="btn btn-light w-100 py-2 text-start border d-flex align-items-center gap-2">
+                  <i class="bi bi-person-plus-fill text-primary fs-5"></i>
+                  <span class="small fw-semibold">Input Siswa Baru</span>
+                </a>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="kehadiran.html" class="btn btn-light w-100 py-2 text-start border d-flex align-items-center gap-2">
+                  <i class="bi bi-calendar-check-fill text-success fs-5"></i>
+                  <span class="small fw-semibold">Rekap Absensi</span>
+                </a>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="nilai.html" class="btn btn-light w-100 py-2 text-start border d-flex align-items-center gap-2">
+                  <i class="bi bi-calculator-fill text-info fs-5"></i>
+                  <span class="small fw-semibold">Analisis Nilai / KKTP</span>
+                </a>
+              </div>
+              <div class="col-6 col-md-3">
+                <a href="laporan.html" class="btn btn-light w-100 py-2 text-start border d-flex align-items-center gap-2">
+                  <i class="bi bi-printer-fill text-danger fs-5"></i>
+                  <span class="small fw-semibold">Cetak Laporan</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts & Logs Section -->
+      <div class="row g-4">
+        <!-- Chart: Rekap Kehadiran -->
+        <div class="col-lg-7">
+          <div class="card-madrasah h-100">
+            <div class="card-header-custom">
+              <h6><i class="bi bi-bar-chart-fill text-primary me-2"></i>Distribusi Presensi Siswa</h6>
+              <span class="badge bg-light text-muted border">Tahun Berjalan</span>
+            </div>
+            <div class="p-3">
+              <div style="height: 260px; position: relative;">
+                <canvas id="chartKehadiran"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Logs -->
+        <div class="col-lg-5">
+          <div class="card-madrasah h-100">
+            <div class="card-header-custom">
+              <h6><i class="bi bi-clock-history text-secondary me-2"></i>Histori Aktivitas Terbaru</h6>
+              <a href="pengaturan.html" class="small text-decoration-none">Semua Log</a>
+            </div>
+            <div class="p-3">
+              <div id="recentLogsList" class="d-flex flex-column gap-2">
+                <div class="text-center text-muted py-4">Memuat riwayat aktivitas...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core Scripts -->
+<script src="js/github-api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  await window.App.init('dashboard');
+
+  const user = window.App.currentUser;
+  if (!user) return;
+
+  // Custom greeting
+  document.getElementById('dashGreeting').innerText = `Ahlan wa Sahlan, ${user.nama}!`;
+  document.getElementById('dashSubGreeting').innerText = `Masuk sebagai: ${user.role === 'admin' ? 'Administrator Madrasah' : user.jabatan + ' (' + (user.mata_pelajaran || 'Umum') + ')'}`;
+
+  // Admin Pending Verification Alert
+  if (user.role === 'admin') {
+    const users = window.Storage.getAll('user') || [];
+    const pendingUsers = users.filter(u => u.status === 'menunggu_verifikasi');
+    if (pendingUsers.length > 0) {
+      const alertDiv = document.getElementById('adminPendingAlert');
+      alertDiv.className = 'alert alert-warning d-flex align-items-center justify-content-between p-3 mb-4 shadow-sm border-warning';
+      alertDiv.innerHTML = `
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-exclamation-triangle-fill fs-4 text-warning"></i>
+          <div>
+            <b>Pemberitahuan Admin:</b> Terdapat <b>${pendingUsers.length} akun guru baru</b> yang sedang menunggu persetujuan verifikasi.
+          </div>
+        </div>
+        <a href="verifikasi-akun.html" class="btn btn-warning btn-sm fw-bold px-3">Verifikasi Sekarang</a>
+      `;
+    }
+  }
+
+  // Calculate Statistics
+  const murids = window.Storage.getAll('murid') || [];
+  const kelas = window.Storage.getAll('kelas') || [];
+  const kehadiran = window.Storage.getAll('kehadiran') || [];
+  const nilais = window.Storage.getAll('nilai') || [];
+  const logs = window.Storage.getAll('log') || [];
+
+  document.getElementById('statTotalMurid').innerText = murids.length;
+  document.getElementById('statTotalKelas').innerText = kelas.length;
+
+  // Kehadiran Rate
+  if (kehadiran.length > 0) {
+    const hadirCount = kehadiran.filter(k => k.status === 'hadir').length;
+    const rate = ((hadirCount / kehadiran.length) * 100).toFixed(1);
+    document.getElementById('statKehadiranRate').innerText = `${rate}%`;
+  } else {
+    document.getElementById('statKehadiranRate').innerText = '100%';
+  }
+
+  // Rata-rata Nilai
+  if (nilais.length > 0) {
+    const sum = nilais.reduce((acc, n) => acc + (Number(n.nilai_akhir) || 0), 0);
+    const avg = (sum / nilais.length).toFixed(1);
+    document.getElementById('statRataNilai').innerText = avg;
+  } else {
+    document.getElementById('statRataNilai').innerText = '0.0';
+  }
+
+  // Render Kehadiran Chart
+  const hadir = kehadiran.filter(k => k.status === 'hadir').length;
+  const sakit = kehadiran.filter(k => k.status === 'sakit').length;
+  const izin = kehadiran.filter(k => k.status === 'izin').length;
+  const alpa = kehadiran.filter(k => k.status === 'alpa').length;
+
+  const ctx = document.getElementById('chartKehadiran').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Hadir', 'Sakit', 'Izin', 'Alpa'],
+      datasets: [{
+        data: [hadir || 1, sakit, izin, alpa],
+        backgroundColor: ['#10b981', '#0284c7', '#f59e0b', '#ef4444'],
+        borderWidth: 2,
+        borderColor: '#ffffff'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            boxWidth: 12,
+            padding: 15,
+            font: { family: 'Plus Jakarta Sans', size: 12 }
+          }
+        }
+      },
+      cutout: '70%'
+    }
+  });
+
+  // Render Recent Logs
+  const logContainer = document.getElementById('recentLogsList');
+  if (logs.length === 0) {
+    logContainer.innerHTML = '<div class="text-center text-muted py-3">Belum ada catatan aktivitas.</div>';
+  } else {
+    const recent = logs.slice(0, 5);
+    logContainer.innerHTML = recent.map(l => `
+      <div class="p-2 rounded bg-light border-start border-3 border-primary" style="font-size: 0.82rem;">
+        <div class="d-flex justify-content-between text-muted mb-1" style="font-size: 0.72rem;">
+          <span class="fw-bold text-dark"><i class="bi bi-person me-1"></i>${l.user_nama || 'System'}</span>
+          <span>${window.App.formatDate(l.waktu)}</span>
+        </div>
+        <div class="text-secondary">${l.aksi}</div>
+      </div>
+    `).join('');
+  }
+});
+</script>
+
+</body>
+</html>

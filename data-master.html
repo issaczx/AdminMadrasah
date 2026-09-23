@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Master Murid & Kelas — SIM Administrasi Madrasah</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+  <!-- Sidebar Container -->
+  <aside class="app-sidebar" id="sidebar-container"></aside>
+
+  <!-- Main Content -->
+  <div class="app-main">
+    <header class="app-topbar" id="topbar-container"></header>
+
+    <main class="page-content">
+      
+      <!-- Top Navigation Tabs (Murid vs Kelas) -->
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <ul class="nav nav-pills p-1 bg-white border rounded-3 shadow-sm" id="masterTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active fw-bold px-4 py-2" id="tab-murid-btn" data-bs-toggle="pill" data-bs-target="#tab-murid-pane" type="button" role="tab">
+              <i class="bi bi-people-fill me-2"></i> Data Murid
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold px-4 py-2" id="tab-kelas-btn" data-bs-toggle="pill" data-bs-target="#tab-kelas-pane" type="button" role="tab">
+              <i class="bi bi-door-open-fill me-2"></i> Data Kelas / Rombel
+            </button>
+          </li>
+        </ul>
+
+        <div class="d-flex gap-2">
+          <!-- Hidden inputs for file import -->
+          <input type="file" id="inputImportMuridCSV" accept=".csv" class="d-none">
+          <input type="file" id="inputImportKelasCSV" accept=".csv" class="d-none">
+        </div>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="tab-content" id="masterTabsContent">
+        
+        <!-- ========================================== -->
+        <!-- TAB 1: DATA MURID                          -->
+        <!-- ========================================== -->
+        <div class="tab-pane fade show active" id="tab-murid-pane" role="tabpanel">
+          <div class="card-madrasah">
+            <!-- Filter & Action Header -->
+            <div class="p-3 border-bottom bg-light">
+              <div class="row g-2 align-items-center justify-content-between">
+                <!-- Left: Filter & Search -->
+                <div class="col-md-6 d-flex flex-wrap gap-2 align-items-center">
+                  <div style="min-width: 170px;">
+                    <select class="form-select form-select-sm" id="filterKelasMurid">
+                      <option value="all">Semua Kelas</option>
+                    </select>
+                  </div>
+                  <div class="input-group input-group-sm" style="max-width: 250px;">
+                    <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+                    <input type="text" class="form-control" id="searchMurid" placeholder="Cari nama / NIS / absen...">
+                  </div>
+                  <span class="badge bg-emerald-soft" id="muridCountBadge">0 Siswa</span>
+                </div>
+
+                <!-- Right: Buttons -->
+                <div class="col-md-6 text-md-end d-flex flex-wrap gap-2 justify-content-md-end">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-filetype-csv me-1"></i> CSV
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                      <li><a class="dropdown-item py-2 small" href="javascript:void(0)" id="btnExportMuridCSV"><i class="bi bi-download me-2 text-primary"></i> Export Data CSV</a></li>
+                      <li><a class="dropdown-item py-2 small" href="javascript:void(0)" onclick="document.getElementById('inputImportMuridCSV').click()"><i class="bi bi-upload me-2 text-success"></i> Import dari CSV</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item py-2 small" href="javascript:void(0)" id="btnDownloadTemplateMurid"><i class="bi bi-file-earmark-arrow-down me-2 text-secondary"></i> Unduh Template CSV</a></li>
+                    </ul>
+                  </div>
+
+                  <button class="btn btn-sm btn-madrasah" onclick="DataMaster.openAddMurid()">
+                    <i class="bi bi-person-plus-fill me-1"></i> Tambah Siswa
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bulk Selection Toolbar for Murid -->
+            <div class="bulk-selection-bar d-none" id="selectionBarMurid">
+              <div class="d-flex align-items-center gap-2">
+                <span class="selection-count-badge" id="selectedMuridCount">0 Dipilih</span>
+                <span class="small text-white-50">data siswa terpilih</span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <button class="btn btn-sm btn-outline-light" id="btnMoveSelectedMurid">
+                  <i class="bi bi-arrow-left-right me-1"></i> Pindah Kelas
+                </button>
+                <button class="btn btn-sm btn-outline-light" id="btnExportSelectedMurid">
+                  <i class="bi bi-download me-1"></i> Export Terpilih (CSV)
+                </button>
+                <button class="btn btn-sm btn-danger" id="btnDeleteSelectedMurid">
+                  <i class="bi bi-trash-fill me-1"></i> Hapus Terpilih
+                </button>
+                <button class="btn btn-sm btn-light" id="btnClearSelectionMurid">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Table Murid -->
+            <div class="table-responsive">
+              <table class="table table-custom table-hover">
+                <thead>
+                  <tr>
+                    <th class="th-select"><input type="checkbox" class="form-check-input form-check-input-custom" id="selectAllMurid" title="Pilih Semua"></th>
+                    <th class="text-center" style="width: 50px;">Absen</th>
+                    <th style="width: 140px;">NIS Lokal</th>
+                    <th>Nama Lengkap Siswa</th>
+                    <th style="width: 140px;">Kelas</th>
+                    <th class="text-center" style="width: 80px;">L/P</th>
+                    <th class="text-end" style="width: 120px;">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tableMuridBody">
+                  <!-- Injected by data-master.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: DATA KELAS / ROMBEL                 -->
+        <!-- ========================================== -->
+        <div class="tab-pane fade" id="tab-kelas-pane" role="tabpanel">
+          <div class="card-madrasah">
+            <div class="card-header-custom bg-light">
+              <h6 class="mb-0 fw-bold"><i class="bi bi-door-open-fill text-primary me-2"></i>Daftar Rombongan Belajar (Kelas)</h6>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-secondary" id="btnExportKelasCSV">
+                  <i class="bi bi-download me-1"></i> Export CSV
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('inputImportKelasCSV').click()">
+                  <i class="bi bi-upload me-1"></i> Import CSV
+                </button>
+                <button class="btn btn-sm btn-madrasah" onclick="DataMaster.openAddKelas()">
+                  <i class="bi bi-plus-circle me-1"></i> Tambah Kelas
+                </button>
+              </div>
+            </div>
+
+            <!-- Bulk Selection Toolbar for Kelas -->
+            <div class="bulk-selection-bar d-none m-3 mb-0" id="selectionBarKelas">
+              <div class="d-flex align-items-center gap-2">
+                <span class="selection-count-badge" id="selectedKelasCount">0 Dipilih</span>
+                <span class="small text-white-50">data kelas terpilih</span>
+              </div>
+              <div class="d-flex gap-2 align-items-center">
+                <button class="btn btn-sm btn-danger" id="btnDeleteSelectedKelas">
+                  <i class="bi bi-trash-fill me-1"></i> Hapus Kelas Terpilih
+                </button>
+                <button class="btn btn-sm btn-light" id="btnClearSelectionKelas">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Table Kelas -->
+            <div class="table-responsive">
+              <table class="table table-custom table-hover">
+                <thead>
+                  <tr>
+                    <th class="th-select"><input type="checkbox" class="form-check-input form-check-input-custom" id="selectAllKelas" title="Pilih Semua"></th>
+                    <th class="text-center" style="width: 50px;">No</th>
+                    <th style="width: 140px;">Nama Kelas</th>
+                    <th style="width: 120px;">Tingkat</th>
+                    <th>Wali Kelas</th>
+                    <th class="text-center" style="width: 140px;">Jumlah Siswa</th>
+                    <th class="text-end" style="width: 120px;">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tableKelasBody">
+                  <!-- Injected by data-master.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODAL: PINDAH KELAS MASSAL                                   -->
+<!-- ============================================================ -->
+<div class="modal fade" id="modalPindahKelasMassal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+      <div class="modal-header border-bottom pb-3">
+        <h5 class="modal-title fw-bold"><i class="bi bi-arrow-left-right text-primary me-2"></i>Pindahkan Siswa Terpilih</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p class="small text-muted mb-3" id="textPindahKelasDesc">Pindahkan siswa terpilih ke rombongan belajar / kelas baru:</p>
+        <div class="mb-3">
+          <label for="selectTargetPindahKelas" class="form-label fw-bold small">Pilih Kelas Tujuan <span class="text-danger">*</span></label>
+          <select class="form-select" id="selectTargetPindahKelas">
+            <!-- Injected -->
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-madrasah px-4" id="btnConfirmPindahKelas">Pindahkan Siswa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODAL: TAMBAH / EDIT MURID                                   -->
+<!-- ============================================================ -->
+<div class="modal fade" id="modalMurid" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+      <div class="modal-header border-bottom pb-3">
+        <h5 class="modal-title fw-bold" id="modalMuridTitle">Tambah Data Siswa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="formMurid">
+        <div class="modal-body p-4">
+          <input type="hidden" id="muridId">
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="muridNoAbsen" class="form-label">No. Urut Absen</label>
+              <input type="number" class="form-control" id="muridNoAbsen" placeholder="Contoh: 01" min="1" max="99">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="muridNis" class="form-label">NIS Lokal / Induk</label>
+              <input type="text" class="form-control" id="muridNis" placeholder="Contoh: 202407001">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="muridNama" class="form-label">Nama Lengkap Murid <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="muridNama" placeholder="Masukkan nama lengkap siswa" required>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="muridKelas" class="form-label">Kelas / Rombel <span class="text-danger">*</span></label>
+              <select class="form-select" id="muridKelas" required>
+                <!-- Injected options -->
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="muridGender" class="form-label">Jenis Kelamin</label>
+              <select class="form-select" id="muridGender">
+                <option value="L">Laki-laki (L)</option>
+                <option value="P">Perempuan (P)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-madrasah px-4" id="btnSaveMurid">Simpan Data</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODAL: TAMBAH / EDIT KELAS                                   -->
+<!-- ============================================================ -->
+<div class="modal fade" id="modalKelas" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+      <div class="modal-header border-bottom pb-3">
+        <h5 class="modal-title fw-bold" id="modalKelasTitle">Tambah Kelas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="formKelas">
+        <div class="modal-body p-4">
+          <input type="hidden" id="kelasId">
+
+          <div class="row">
+            <div class="col-md-7 mb-3">
+              <label for="kelasNama" class="form-label">Nama Kelas <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="kelasNama" placeholder="Contoh: VII-A, VIII-B, IX-1" required>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="kelasTingkat" class="form-label">Tingkat</label>
+              <select class="form-select" id="kelasTingkat">
+                <option value="7">Kelas 7</option>
+                <option value="8">Kelas 8</option>
+                <option value="9">Kelas 9</option>
+                <option value="10">Kelas 10</option>
+                <option value="11">Kelas 11</option>
+                <option value="12">Kelas 12</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="kelasWali" class="form-label">Nama Wali Kelas</label>
+            <input type="text" class="form-control" id="kelasWali" placeholder="Contoh: Ustadz Ahmad Fauzi, S.Pd.I">
+          </div>
+
+          <div class="mb-3">
+            <label for="kelasKeterangan" class="form-label">Keterangan / Jurusan</label>
+            <input type="text" class="form-control" id="kelasKeterangan" placeholder="Contoh: Program Tahfidz Unggulan">
+          </div>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-madrasah px-4" id="btnSaveKelas">Simpan Kelas</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core Scripts -->
+<script src="js/github-api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/data-master.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  await window.App.init('data-master');
+  window.DataMaster.init();
+});
+</script>
+
+</body>
+</html>

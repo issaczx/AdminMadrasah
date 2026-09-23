@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekap Kehadiran Murid — SIM Administrasi Madrasah</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+  <aside class="app-sidebar" id="sidebar-container"></aside>
+
+  <div class="app-main">
+    <header class="app-topbar" id="topbar-container"></header>
+
+    <main class="page-content">
+      
+      <!-- Top Control Bar -->
+      <div class="card-madrasah p-3 mb-4">
+        <div class="row g-3 align-items-center justify-content-between">
+          <!-- Left: Nav Mode + Kelas Select -->
+          <div class="col-lg-7 d-flex flex-wrap gap-2 align-items-center">
+            <ul class="nav nav-pills p-1 bg-light border rounded-3" role="tablist">
+              <li class="nav-item">
+                <button class="nav-link active fw-bold small px-3" id="tab-input-presensi" data-bs-toggle="pill" type="button">
+                  <i class="bi bi-pencil-square me-1"></i> Input Harian
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link fw-bold small px-3" id="tab-rekap-presensi" data-bs-toggle="pill" type="button">
+                  <i class="bi bi-table me-1"></i> Rekapitulasi & Persentase
+                </button>
+              </li>
+            </ul>
+
+            <div style="min-width: 200px;">
+              <select class="form-select form-select-sm fw-bold border-primary" id="selectKelasPresensi">
+                <!-- Injected options -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Right: Action Buttons -->
+          <div class="col-lg-5 text-lg-end d-flex flex-wrap gap-2 justify-content-lg-end">
+            <input type="file" id="inputImportKehadiranCSV" accept=".csv" class="d-none">
+            
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-filetype-csv me-1"></i> CSV
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                <li><a class="dropdown-item py-2 small" href="javascript:void(0)" id="btnExportKehadiranCSV"><i class="bi bi-download me-2 text-primary"></i> Export Rekap CSV</a></li>
+                <li><a class="dropdown-item py-2 small" href="javascript:void(0)" onclick="document.getElementById('inputImportKehadiranCSV').click()"><i class="bi bi-upload me-2 text-success"></i> Import Presensi CSV</a></li>
+              </ul>
+            </div>
+
+            <a href="laporan.html" class="btn btn-sm btn-outline-madrasah">
+              <i class="bi bi-printer me-1"></i> Cetak Laporan
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================= -->
+      <!-- VIEW 1: INPUT PRESENSI HARIAN                           -->
+      <!-- ======================================================= -->
+      <div id="viewInputPresensi">
+        <form id="formInputPresensi">
+          <div class="card-madrasah">
+            <div class="card-header-custom bg-light">
+              <div class="d-flex align-items-center gap-3">
+                <h6 class="fw-bold mb-0"><i class="bi bi-calendar-check-fill text-success me-2"></i>Form Presensi Kelas</h6>
+                <div class="d-flex align-items-center gap-2">
+                  <label for="inputTglPresensi" class="form-label mb-0 small text-muted">Tanggal:</label>
+                  <input type="date" class="form-control form-control-sm" id="inputTglPresensi" style="width: 160px;" required>
+                </div>
+              </div>
+
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="btnSetAllHadir">
+                  <i class="bi bi-check-all me-1 text-success"></i> Set Semua Hadir
+                </button>
+                <button type="submit" class="btn btn-sm btn-madrasah px-3">
+                  <i class="bi bi-save me-1"></i> Simpan Presensi
+                </button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-custom table-hover">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width: 70px;">Absen</th>
+                    <th style="width: 250px;">Nama Siswa</th>
+                    <th class="text-center" style="width: 240px;">Status Kehadiran (H / S / I / A)</th>
+                    <th>Catatan / Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody id="tableInputPresensiBody">
+                  <!-- Injected by kehadiran.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-3 border-top bg-light d-flex justify-content-between align-items-center">
+              <div class="small text-muted">
+                <span class="badge bg-success me-1">H</span> Hadir &nbsp;|&nbsp;
+                <span class="badge bg-primary me-1">S</span> Sakit &nbsp;|&nbsp;
+                <span class="badge bg-warning text-dark me-1">I</span> Izin &nbsp;|&nbsp;
+                <span class="badge bg-danger me-1">A</span> Alpa
+              </div>
+              <button type="submit" class="btn btn-madrasah px-4">
+                <i class="bi bi-save me-1"></i> Simpan Presensi
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- ======================================================= -->
+      <!-- VIEW 2: REKAPITULASI & PERSENTASE                       -->
+      <!-- ======================================================= -->
+      <div id="viewRekapPresensi" class="d-none">
+        <div class="card-madrasah">
+          <div class="card-header-custom bg-light">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <h6 class="fw-bold mb-0"><i class="bi bi-table text-primary me-2"></i>Rekapitulasi Kehadiran Siswa</h6>
+              
+              <div class="d-flex align-items-center gap-2">
+                <select class="form-select form-select-sm" id="filterRekapBulan" style="width: 140px;">
+                  <option value="0">Semua Bulan</option>
+                  <option value="1">Januari</option>
+                  <option value="2">Februari</option>
+                  <option value="3">Maret</option>
+                  <option value="4">April</option>
+                  <option value="5">Mei</option>
+                  <option value="6">Juni</option>
+                  <option value="7">Juli</option>
+                  <option value="8">Agustus</option>
+                  <option value="9">September</option>
+                  <option value="10">Oktober</option>
+                  <option value="11">November</option>
+                  <option value="12">Desember</option>
+                </select>
+
+                <select class="form-select form-select-sm" id="filterRekapTahun" style="width: 100px;">
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <span class="badge bg-emerald-soft px-3 py-2 fw-bold" id="rekapSummaryBadge">Rata-rata: 100%</span>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-custom table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center" style="width: 60px;">Absen</th>
+                  <th>Nama Lengkap Siswa</th>
+                  <th class="text-center" style="width: 90px; color: #10b981;">Hadir (H)</th>
+                  <th class="text-center" style="width: 90px; color: #0284c7;">Sakit (S)</th>
+                  <th class="text-center" style="width: 90px; color: #f59e0b;">Izin (I)</th>
+                  <th class="text-center" style="width: 90px; color: #ef4444;">Alpa (A)</th>
+                  <th class="text-center" style="width: 110px;">Total Pertemuan</th>
+                  <th class="text-center" style="width: 140px;">Persentase</th>
+                </tr>
+              </thead>
+              <tbody id="tableRekapPresensiBody">
+                <!-- Injected by kehadiran.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core Scripts -->
+<script src="js/github-api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/kehadiran.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  await window.App.init('kehadiran');
+  window.Kehadiran.init();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengaturan Sistem & Profil — SIM Administrasi Madrasah</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+  <aside class="app-sidebar" id="sidebar-container"></aside>
+
+  <div class="app-main">
+    <header class="app-topbar" id="topbar-container"></header>
+
+    <main class="page-content">
+      
+      <!-- Settings Tabs Navigation -->
+      <div class="card-madrasah p-2 mb-4">
+        <ul class="nav nav-pills nav-fill flex-column flex-md-row gap-1" id="settingsTab" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active fw-bold small py-2" id="tab-madrasah-btn" data-bs-toggle="pill" data-bs-target="#pane-madrasah" type="button">
+              <i class="bi bi-building-fill me-1"></i> Profil Madrasah
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link fw-bold small py-2" id="tab-guru-btn" data-bs-toggle="pill" data-bs-target="#pane-guru" type="button">
+              <i class="bi bi-person-badge-fill me-1"></i> Profil Pengguna
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link fw-bold small py-2" id="tab-security-btn" data-bs-toggle="pill" data-bs-target="#pane-security" type="button">
+              <i class="bi bi-shield-lock-fill me-1"></i> Keamanan Akun
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link fw-bold small py-2" id="tab-github-btn" data-bs-toggle="pill" data-bs-target="#pane-github" type="button">
+              <i class="bi bi-github me-1"></i> Backend GitHub
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link fw-bold small py-2" id="tab-backup-btn" data-bs-toggle="pill" data-bs-target="#pane-backup" type="button">
+              <i class="bi bi-database-fill-gear me-1"></i> Backup & Restore
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link fw-bold small py-2" id="tab-log-btn" data-bs-toggle="pill" data-bs-target="#pane-log" type="button">
+              <i class="bi bi-clock-history me-1"></i> Audit Log
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Settings Tab Contents -->
+      <div class="tab-content" id="settingsTabContent">
+        
+        <!-- PANE 1: PROFIL MADRASAH & KAMAD -->
+        <div class="tab-pane fade show active" id="pane-madrasah" role="tabpanel">
+          <form id="formMadrasahProfile">
+            <div class="card-madrasah mb-4">
+              <div class="card-header-custom bg-light">
+                <h6 class="fw-bold mb-0"><i class="bi bi-building me-2 text-primary"></i>Informasi & Identitas Madrasah</h6>
+              </div>
+              <div class="p-4">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="setMadrasahNama" class="form-label">Nama Lengkap Madrasah <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="setMadrasahNama" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="setMadrasahKota" class="form-label">Kota / Kabupaten</label>
+                    <input type="text" class="form-control" id="setMadrasahKota" placeholder="Contoh: Jakarta">
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="setMadrasahAlamat" class="form-label">Alamat Lengkap Madrasah</label>
+                  <input type="text" class="form-control" id="setMadrasahAlamat">
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="setMadrasahTelp" class="form-label">No. Telepon / Kontak</label>
+                    <input type="text" class="form-control" id="setMadrasahTelp">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="setMadrasahEmail" class="form-label">Email Resmi</label>
+                    <input type="email" class="form-control" id="setMadrasahEmail">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <label for="setMadrasahNsm" class="form-label">NSM (Nomor Statistik Madrasah)</label>
+                    <input type="text" class="form-control" id="setMadrasahNsm">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="setMadrasahNpsn" class="form-label">NPSN</label>
+                    <input type="text" class="form-control" id="setMadrasahNpsn">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="setMadrasahLogo" class="form-label">URL Logo Madrasah (Opsional)</label>
+                    <input type="url" class="form-control" id="setMadrasahLogo" placeholder="https://...">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kepala Madrasah & Tahun Pelajaran -->
+            <div class="card-madrasah mb-4">
+              <div class="card-header-custom bg-light">
+                <h6 class="fw-bold mb-0"><i class="bi bi-person-workspace me-2 text-primary"></i>Kepala Madrasah & Periode Aktif</h6>
+              </div>
+              <div class="p-4">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="setKamadNama" class="form-label">Nama Kepala Madrasah <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="setKamadNama" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="setKamadNip" class="form-label">NIP Kepala Madrasah</label>
+                    <input type="text" class="form-control" id="setKamadNip">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="setKamadGolongan" class="form-label">Pangkat / Golongan Kamad</label>
+                    <input type="text" class="form-control" id="setKamadGolongan" placeholder="Pembina Tk. I / IV-b">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="setKamadJabatan" class="form-label">Jabatan</label>
+                    <input type="text" class="form-control" id="setKamadJabatan" value="Kepala Madrasah">
+                  </div>
+                </div>
+
+                <div class="row pt-2 border-top">
+                  <div class="col-md-4 mb-3">
+                    <label for="setTahunPelajaran" class="form-label">Tahun Pelajaran Aktif <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="setTahunPelajaran" placeholder="Contoh: 2025/2026" required>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="setSemester" class="form-label">Semester Aktif</label>
+                    <select class="form-select" id="setSemester">
+                      <option value="Ganjil">Semester Ganjil (1)</option>
+                      <option value="Genap">Semester Genap (2)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="setKktpDefault" class="form-label">Standar KKTP Default</label>
+                    <input type="number" class="form-control text-center fw-bold" id="setKktpDefault" min="50" max="100" value="75">
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3 border-top bg-light text-end">
+                <button type="submit" class="btn btn-madrasah px-4">
+                  <i class="bi bi-save me-1"></i> Simpan Profil Madrasah
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- PANE 2: PROFIL GURU SAAT INI -->
+        <div class="tab-pane fade" id="pane-guru" role="tabpanel">
+          <form id="formGuruProfile">
+            <div class="card-madrasah">
+              <div class="card-header-custom bg-light">
+                <h6 class="fw-bold mb-0"><i class="bi bi-person-lines-fill me-2 text-primary"></i>Profil Akun Pengguna Saat Ini</h6>
+              </div>
+              <div class="p-4">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="setGuruNama" class="form-label">Nama Lengkap & Gelar <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="setGuruNama" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="setGuruUsername" class="form-label">Username</label>
+                    <input type="text" class="form-control bg-light" id="setGuruUsername" readonly>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="setGuruEmail" class="form-label">Alamat Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="setGuruEmail" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="setGuruNip" class="form-label">NIP / NUPTK</label>
+                    <input type="text" class="form-control" id="setGuruNip">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <label for="setGuruMapel" class="form-label">Mata Pelajaran Diampu</label>
+                    <input type="text" class="form-control" id="setGuruMapel">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="setGuruGolongan" class="form-label">Pangkat / Golongan</label>
+                    <input type="text" class="form-control" id="setGuruGolongan">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="setGuruJabatan" class="form-label">Jabatan</label>
+                    <input type="text" class="form-control" id="setGuruJabatan">
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3 border-top bg-light text-end">
+                <button type="submit" class="btn btn-madrasah px-4">
+                  <i class="bi bi-person-check me-1"></i> Perbarui Profil Saya
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- PANE 3: KEAMANAN AKUN (GANTI PASSWORD) -->
+        <div class="tab-pane fade" id="pane-security" role="tabpanel">
+          <div class="card-madrasah" style="max-width: 600px;">
+            <div class="card-header-custom bg-light">
+              <h6 class="fw-bold mb-0"><i class="bi bi-shield-lock text-primary me-2"></i>Ubah Kata Sandi Akun</h6>
+            </div>
+            <form id="formChangePassword">
+              <div class="p-4">
+                <div class="mb-3">
+                  <label for="oldPassword" class="form-label">Kata Sandi Lama <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="oldPassword" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="newPassword" class="form-label">Kata Sandi Baru <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="newPassword" minlength="6" placeholder="Minimal 6 karakter" required>
+                </div>
+
+                <div class="mb-4">
+                  <label for="confirmNewPassword" class="form-label">Konfirmasi Kata Sandi Baru <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="confirmNewPassword" minlength="6" placeholder="Ulangi sandi baru" required>
+                </div>
+
+                <button type="submit" class="btn btn-madrasah w-100 py-2">
+                  <i class="bi bi-key-fill me-1"></i> Perbarui Kata Sandi
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- PANE 4: BACKEND GITHUB CONFIGURATION -->
+        <div class="tab-pane fade" id="pane-github" role="tabpanel">
+          <div class="card-madrasah mb-4">
+            <div class="card-header-custom bg-light">
+              <h6 class="fw-bold mb-0"><i class="bi bi-github text-dark me-2"></i>Konfigurasi Penyimpanan Database GitHub REST API</h6>
+            </div>
+            <form id="formGithubConfig">
+              <div class="p-4">
+                <div class="alert alert-info py-2 px-3 small mb-3">
+                  <i class="bi bi-info-circle-fill me-1"></i> Sistem menggunakan <b>GitHub Repository</b> sebagai backend database berbasis file JSON. Masukkan <i>Personal Access Token (PAT)</i> GitHub dengan hak akses repo untuk mengaktifkan sinkronisasi otomatis.
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="gitOwner" class="form-label">GitHub Username / Organization Owner <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="gitOwner" placeholder="Contoh: pakrizki-madrasah">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="gitRepo" class="form-label">Nama Repository <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="gitRepo" placeholder="Contoh: AdminMadrasah">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <label for="gitBranch" class="form-label">Branch Target</label>
+                    <input type="text" class="form-control" id="gitBranch" value="main">
+                  </div>
+                  <div class="col-md-8 mb-3">
+                    <label for="gitToken" class="form-label">GitHub Personal Access Token (PAT) <span class="text-danger">*</span></label>
+                    <input type="password" class="form-control" id="gitToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                  </div>
+                </div>
+
+                <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 border-top">
+                  <span class="small text-muted" id="gitLastSyncText">Belum pernah disinkronkan</span>
+                  <div class="d-flex gap-2 mt-2 mt-sm-0">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="btnTestGithubConn">
+                      <i class="bi bi-broadcast me-1"></i> Uji Koneksi GitHub
+                    </button>
+                    <button type="submit" class="btn btn-madrasah btn-sm">
+                      <i class="bi bi-save me-1"></i> Simpan Konfigurasi
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="p-3 border-top bg-light d-flex flex-wrap gap-2 justify-content-between align-items-center">
+              <span class="small fw-bold text-secondary">Aksi Sinkronisasi Data Manual:</span>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-primary" id="btnSyncFromGithub">
+                  <i class="bi bi-cloud-arrow-down me-1"></i> Tarik Data dari GitHub
+                </button>
+                <button class="btn btn-sm btn-success" id="btnSyncToGithub">
+                  <i class="bi bi-cloud-arrow-up me-1"></i> Sinkronkan Semua ke GitHub
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANE 5: BACKUP & RESTORE DATA -->
+        <div class="tab-pane fade" id="pane-backup" role="tabpanel">
+          <div class="row g-4">
+            <!-- Export Backup -->
+            <div class="col-md-6">
+              <div class="card-madrasah h-100 p-4 text-center">
+                <div class="display-5 text-primary mb-3">
+                  <i class="bi bi-file-earmark-arrow-down-fill"></i>
+                </div>
+                <h5 class="fw-bold">Cadangkan Database (Backup JSON)</h5>
+                <p class="text-muted small mb-4">Unduh seluruh entitas data aplikasi (Guru, Murid, Kelas, Presensi, Jurnal, Nilai, dan Log) dalam format satu file JSON terenkapsulasi.</p>
+                <button class="btn btn-madrasah mt-auto w-100 py-2" id="btnExportBackupJSON">
+                  <i class="bi bi-download me-2"></i> Unduh File Cadangan (.json)
+                </button>
+              </div>
+            </div>
+
+            <!-- Restore Backup -->
+            <div class="col-md-6">
+              <div class="card-madrasah h-100 p-4 text-center">
+                <div class="display-5 text-warning mb-3">
+                  <i class="bi bi-file-earmark-arrow-up-fill"></i>
+                </div>
+                <h5 class="fw-bold">Pulihkan Database (Restore JSON)</h5>
+                <p class="text-muted small mb-4">Pulihkan seluruh data aplikasi dari file cadangan JSON yang sebelumnya pernah diunduh.</p>
+                <input type="file" id="inputRestoreJSON" accept=".json" class="d-none">
+                <button class="btn btn-outline-madrasah mt-auto w-100 py-2" onclick="document.getElementById('inputRestoreJSON').click()">
+                  <i class="bi bi-upload me-2"></i> Pilih File Cadangan (.json)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANE 6: AUDIT LOG AKTIVITAS -->
+        <div class="tab-pane fade" id="pane-log" role="tabpanel">
+          <div class="card-madrasah">
+            <div class="card-header-custom bg-light">
+              <h6 class="fw-bold mb-0"><i class="bi bi-clock-history text-secondary me-2"></i>Catatan Audit Log Aktivitas Sistem</h6>
+              <button class="btn btn-sm btn-outline-danger" id="btnClearLogs">
+                <i class="bi bi-trash me-1"></i> Bersihkan Log
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-custom table-hover">
+                <thead>
+                  <tr>
+                    <th class="text-center" style="width: 50px;">No</th>
+                    <th style="width: 170px;">Waktu Aktivitas</th>
+                    <th style="width: 220px;">Pengguna (User)</th>
+                    <th>Rincian Tindakan / Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tableLogsBody">
+                  <!-- Injected by pengaturan.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core Scripts -->
+<script src="js/github-api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pengaturan.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  await window.App.init('pengaturan');
+  window.Pengaturan.init();
+});
+</script>
+
+</body>
+</html>

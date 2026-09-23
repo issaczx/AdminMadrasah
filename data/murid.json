@@ -1,0 +1,106 @@
+[
+  {
+    "id": "mrd-001",
+    "no_absen": "01",
+    "nis_lokal": "202407001",
+    "nama": "Abdullah Azzam",
+    "kelas_id": "kls-7a",
+    "jenis_kelamin": "L"
+  },
+  {
+    "id": "mrd-002",
+    "no_absen": "02",
+    "nis_lokal": "202407002",
+    "nama": "Ahmad Daniyal",
+    "kelas_id": "kls-7a",
+    "jenis_kelamin": "L"
+  },
+  {
+    "id": "mrd-003",
+    "no_absen": "03",
+    "nis_lokal": "202407003",
+    "nama": "Aisyah Humaira",
+    "kelas_id": "kls-7a",
+    "jenis_kelamin": "P"
+  },
+  {
+    "id": "mrd-004",
+    "no_absen": "04",
+    "nis_lokal": "202407004",
+    "nama": "Bilal Al-Habasyi",
+    "kelas_id": "kls-7a",
+    "jenis_kelamin": "L"
+  },
+  {
+    "id": "mrd-005",
+    "no_absen": "05",
+    "nis_lokal": "202407005",
+    "nama": "Fatimah Az-Zahra",
+    "kelas_id": "kls-7a",
+    "jenis_kelamin": "P"
+  },
+  {
+    "id": "mrd-006",
+    "no_absen": "06",
+    "nis_lokal": "202407006",
+    "nama": "Hafizhah Nurul Ilmi",
+    "kelas_id": "kls-7a",
+    "jenis_kelamin": "P"
+  },
+  {
+    "id": "mrd-007",
+    "no_absen": "07",
+    "nis_lokal": "202407007",
+    "nama": "Ibrahim Khalil",
+    "kelas_id": "kls-7a",
+    "jenis_kelamin": "L"
+  },
+  {
+    "id": "mrd-008",
+    "no_absen": "08",
+    "nis_lokal": "202407008",
+    "nama": "Khadijah Al-Kubra",
+    "kelas_id": "kls-7a",
+    "jenis_kelamin": "P"
+  },
+  {
+    "id": "mrd-009",
+    "no_absen": "01",
+    "nis_lokal": "202407021",
+    "nama": "Muhammad Rizky Pratama",
+    "kelas_id": "kls-7b",
+    "jenis_kelamin": "L"
+  },
+  {
+    "id": "mrd-010",
+    "no_absen": "02",
+    "nis_lokal": "202407022",
+    "nama": "Naila Salsabila",
+    "kelas_id": "kls-7b",
+    "jenis_kelamin": "P"
+  },
+  {
+    "id": "mrd-011",
+    "no_absen": "03",
+    "nis_lokal": "202407023",
+    "nama": "Raihan Al-Faruq",
+    "kelas_id": "kls-7b",
+    "jenis_kelamin": "L"
+  },
+  {
+    "id": "mrd-012",
+    "no_absen": "01",
+    "nis_lokal": "202308001",
+    "nama": "Zaid bin Tsabit",
+    "kelas_id": "kls-8a",
+    "jenis_kelamin": "L"
+  },
+  {
+    "id": "mrd-013",
+    "no_absen": "02",
+    "nis_lokal": "202308002",
+    "nama": "Zubair bin Awwam",
+    "kelas_id": "kls-8a",
+    "jenis_kelamin": "L"
+  }
+]

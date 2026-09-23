@@ -1,0 +1,20 @@
+[
+  {
+    "id": "jrn-001",
+    "tanggal": "2026-09-15",
+    "kelas_id": "kls-7a",
+    "tujuan_pembelajaran": "Memahami konsep dan ketentuan Thaharah (Bersuci dari Hadats dan Najis)",
+    "ketercapaian": "85% siswa mampu mempraktikkan tata cara tayamum dan wudhu dengan benar",
+    "jumlah_hadir": 6,
+    "catatan": "2 siswa berhalangan hadir (Siti Aminah & Hafizhah). Bahan ajar dibagikan via modul."
+  },
+  {
+    "id": "jrn-002",
+    "tanggal": "2026-09-16",
+    "kelas_id": "kls-7a",
+    "tujuan_pembelajaran": "Menganalisis rukun dan syarat sah Shalat Fardhu lima waktu",
+    "ketercapaian": "90% siswa menguasai bacaan dan gerakan shalat dengan tertib",
+    "jumlah_hadir": 7,
+    "catatan": "Diskusi kelompok berjalan sangat aktif dan kondusif."
+  }
+]

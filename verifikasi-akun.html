@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verifikasi & Kelola Akun Guru — SIM Administrasi Madrasah</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+  <aside class="app-sidebar" id="sidebar-container"></aside>
+
+  <div class="app-main">
+    <header class="app-topbar" id="topbar-container"></header>
+
+    <main class="page-content">
+      
+      <!-- Top Alert & Statistics Header -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <div class="stat-card stat-amber">
+            <div class="stat-info">
+              <span>Menunggu Verifikasi</span>
+              <h3 id="badgePendingCount" class="text-warning">0 Menunggu</h3>
+            </div>
+            <div class="stat-icon bg-amber-soft">
+              <i class="bi bi-hourglass-split text-warning"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="stat-card stat-emerald">
+            <div class="stat-info">
+              <span>Guru Terverifikasi & Aktif</span>
+              <h3 id="badgeVerifiedCount" class="text-success">0 Terverifikasi</h3>
+            </div>
+            <div class="stat-icon bg-emerald-soft">
+              <i class="bi bi-patch-check-fill text-success"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls & Filter Card -->
+      <div class="card-madrasah p-3 mb-4">
+        <div class="row g-2 align-items-center justify-content-between">
+          <!-- Left: Filter Pills & Search -->
+          <div class="col-lg-8 d-flex flex-wrap gap-2 align-items-center">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-light border user-filter-btn active" data-status="all">Semua</button>
+              <button class="btn btn-light border user-filter-btn text-warning" data-status="menunggu_verifikasi">
+                <i class="bi bi-hourglass-split me-1"></i>Menunggu Approval
+              </button>
+              <button class="btn btn-light border user-filter-btn text-success" data-status="terverifikasi">
+                <i class="bi bi-check-circle me-1"></i>Terverifikasi
+              </button>
+              <button class="btn btn-light border user-filter-btn text-secondary" data-status="nonaktif">
+                <i class="bi bi-slash-circle me-1"></i>Nonaktif
+              </button>
+            </div>
+
+            <div class="input-group input-group-sm" style="max-width: 250px;">
+              <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+              <input type="text" class="form-control" id="searchUser" placeholder="Cari nama, email, mapel...">
+            </div>
+          </div>
+
+          <!-- Right: Button Tambah User -->
+          <div class="col-lg-4 text-lg-end">
+            <button class="btn btn-sm btn-madrasah" onclick="VerifikasiAkun.openAddModal()">
+              <i class="bi bi-person-plus-fill me-1"></i> Tambah Guru Manual
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bulk Selection Toolbar for User -->
+      <div class="bulk-selection-bar d-none" id="selectionBarUser">
+        <div class="d-flex align-items-center gap-2">
+          <span class="selection-count-badge" id="selectedUserCount">0 Dipilih</span>
+          <span class="small text-white-50">akun guru terpilih</span>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+          <button class="btn btn-sm btn-success" id="btnApproveSelectedUser">
+            <i class="bi bi-check-circle-fill me-1"></i> Setujui Terpilih
+          </button>
+          <button class="btn btn-sm btn-warning text-dark" id="btnDeactivateSelectedUser">
+            <i class="bi bi-slash-circle me-1"></i> Nonaktifkan Terpilih
+          </button>
+          <button class="btn btn-sm btn-danger" id="btnDeleteSelectedUser">
+            <i class="bi bi-trash-fill me-1"></i> Hapus Terpilih
+          </button>
+          <button class="btn btn-sm btn-light" id="btnClearSelectionUser">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Users Table Card -->
+      <div class="card-madrasah">
+        <div class="card-header-custom bg-light">
+          <h6 class="fw-bold mb-0"><i class="bi bi-people-fill text-primary me-2"></i>Daftar Akun Pengguna Sistem</h6>
+          <small class="text-muted">Administrator dapat menyetujui, mengedit, atau menonaktifkan akun.</small>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-custom table-hover">
+            <thead>
+              <tr>
+                <th class="th-select"><input type="checkbox" class="form-check-input form-check-input-custom" id="selectAllUser" title="Pilih Semua"></th>
+                <th class="text-center" style="width: 45px;">No</th>
+                <th style="width: 240px;">Nama Pengguna</th>
+                <th>Email & Golongan</th>
+                <th>Mata Pelajaran / Jabatan</th>
+                <th style="width: 100px;">Role</th>
+                <th class="text-center" style="width: 170px;">Status Akun</th>
+                <th class="text-end" style="width: 180px;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tableUserBody">
+              <!-- Injected by verifikasi-akun.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODAL: TAMBAH / EDIT USER GURU                               -->
+<!-- ============================================================ -->
+<div class="modal fade" id="modalUser" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+      <div class="modal-header border-bottom pb-3">
+        <h5 class="modal-title fw-bold" id="modalUserTitle">Kelola Akun Guru</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="formUserModal">
+        <div class="modal-body p-4">
+          <input type="hidden" id="editUserId">
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="userNamaInput" class="form-label">Nama Lengkap & Gelar <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="userNamaInput" placeholder="Contoh: Ustadz Ahmad, S.Pd.I" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="userUsernameInput" class="form-label">Username <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="userUsernameInput" placeholder="Contoh: ahmad.fauzi" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="userEmailInput" class="form-label">Alamat Email <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="userEmailInput" placeholder="nama@madrasah.sch.id" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="userNipInput" class="form-label">NIP / NUPTK</label>
+              <input type="text" class="form-control" id="userNipInput" placeholder="19880101...">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="userMapelInput" class="form-label">Mata Pelajaran Diampu</label>
+              <input type="text" class="form-control" id="userMapelInput" placeholder="Fiqih / Bahasa Arab">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="userGolonganInput" class="form-label">Pangkat / Golongan</label>
+              <input type="text" class="form-control" id="userGolonganInput" placeholder="Penata Muda / III-a">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="userJabatanInput" class="form-label">Jabatan</label>
+              <input type="text" class="form-control" id="userJabatanInput" value="Guru Mata Pelajaran">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="userRoleSelect" class="form-label">Role Akses</label>
+              <select class="form-select" id="userRoleSelect">
+                <option value="guru">Guru</option>
+                <option value="admin">Administrator</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="userStatusSelect" class="form-label">Status Akun</label>
+              <select class="form-select" id="userStatusSelect">
+                <option value="terverifikasi">Terverifikasi (Aktif)</option>
+                <option value="menunggu_verifikasi">Menunggu Verifikasi</option>
+                <option value="nonaktif">Nonaktif</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3" id="userPasswordContainer">
+            <label for="userPasswordInput" class="form-label">Kata Sandi Akun</label>
+            <input type="password" class="form-control" id="userPasswordInput" placeholder="Minimal 6 karakter" minlength="6">
+          </div>
+        </div>
+
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-madrasah px-4" id="btnSaveUserModal">Simpan Akun</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core Scripts -->
+<script src="js/github-api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/verifikasi-akun.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  // Hanya admin yang diizinkan mengakses halaman ini
+  await window.App.init('verifikasi', ['admin']);
+  window.VerifikasiAkun.init();
+});
+</script>
+
+</body>
+</html>

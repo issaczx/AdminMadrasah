@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Pendaftaran — Sistem Administrasi Madrasah</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <div class="auth-card shadow-lg" id="authCardContainer">
+    <!-- Header -->
+    <div class="auth-header">
+      <div class="brand-icon">
+        <i class="bi bi-mortarboard-fill"></i>
+      </div>
+      <h4 class="fw-bold mb-1">SIM Administrasi Madrasah</h4>
+      <p class="text-white-50 small mb-0">Platform Manajemen Kelas, Kehadiran, Jurnal & Nilai Guru</p>
+    </div>
+
+    <!-- Body -->
+    <div class="auth-body">
+      <!-- Nav Tabs -->
+      <ul class="nav nav-pills nav-fill mb-4 p-1 bg-light rounded-3" id="authTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active fw-semibold" id="tab-login" data-bs-toggle="pill" data-bs-target="#pane-login" type="button" role="tab">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Masuk
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-semibold" id="tab-register" data-bs-toggle="pill" data-bs-target="#pane-register" type="button" role="tab">
+            <i class="bi bi-person-plus me-1"></i> Daftar Guru
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-semibold" id="tab-forgot" data-bs-toggle="pill" data-bs-target="#pane-forgot" type="button" role="tab">
+            <i class="bi bi-key me-1"></i> Lupa Sandi
+          </button>
+        </li>
+      </ul>
+
+      <!-- Tab Contents -->
+      <div class="tab-content" id="authTabsContent">
+        
+        <!-- PANE 1: LOGIN -->
+        <div class="tab-pane fade show active" id="pane-login" role="tabpanel">
+          <form id="formLogin">
+            <div class="mb-3">
+              <label for="loginIdentifier" class="form-label">Username atau Email</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-person text-muted"></i></span>
+                <input type="text" class="form-control" id="loginIdentifier" placeholder="Contoh: admin atau nama@madrasah.sch.id" required autofocus>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <label for="loginPassword" class="form-label mb-0">Kata Sandi</label>
+              </div>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-lock text-muted"></i></span>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Masukkan kata sandi" required>
+                <button class="btn btn-outline-secondary" type="button" id="toggleLoginPass">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-madrasah w-100 py-2 mb-3 mt-4" id="btnLogin">
+              <i class="bi bi-box-arrow-in-right me-2"></i> Masuk ke Sistem
+            </button>
+          </form>
+        </div>
+
+        <!-- PANE 2: REGISTER GURU -->
+        <div class="tab-pane fade" id="pane-register" role="tabpanel">
+          <div class="alert alert-warning py-2 px-3 small mb-3">
+            <i class="bi bi-clock-history me-1"></i> <b>Catatan:</b> Akun guru baru akan berstatus <i>"Menunggu Verifikasi"</i> dan dapat login setelah disetujui oleh Administrator.
+          </div>
+
+          <form id="formRegister">
+            <div class="mb-3">
+              <label for="regNama" class="form-label">Nama Lengkap & Gelar <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="regNama" placeholder="Contoh: Ustadz Ahmad, S.Pd.I" required>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="regNip" class="form-label">NIP / NUPTK</label>
+                <input type="text" class="form-control" id="regNip" placeholder="19880101...">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="regGolongan" class="form-label">Pangkat / Golongan</label>
+                <input type="text" class="form-control" id="regGolongan" placeholder="Penata Muda / III-a">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="regMapel" class="form-label">Mata Pelajaran Diampu <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="regMapel" placeholder="Fiqih / Akidah Akhlak" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="regJabatan" class="form-label">Jabatan</label>
+                <input type="text" class="form-control" id="regJabatan" placeholder="Guru Mapel / Wali Kelas" value="Guru Mata Pelajaran">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="regEmail" class="form-label">Alamat Email Aktif <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="regEmail" placeholder="nama@madrasah.sch.id" required>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="regPassword" class="form-label">Kata Sandi <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" id="regPassword" placeholder="Minimal 6 karakter" minlength="6" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="regConfirmPassword" class="form-label">Konfirmasi Sandi <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" id="regConfirmPassword" placeholder="Ulangi sandi" minlength="6" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-madrasah w-100 py-2" id="btnRegister">
+              <i class="bi bi-person-check me-2"></i> Ajukan Pendaftaran Akun
+            </button>
+          </form>
+        </div>
+
+        <!-- PANE 3: FORGOT PASSWORD -->
+        <div class="tab-pane fade" id="pane-forgot" role="tabpanel">
+          <div class="alert alert-secondary py-2 px-3 small mb-3">
+            <i class="bi bi-shield-lock me-1"></i> Reset sandi langsung tanpa memerlukan verifikasi email/OTP.
+          </div>
+
+          <form id="formForgot">
+            <div class="mb-3">
+              <label for="forgotIdentifier" class="form-label">Username atau Email Terdaftar</label>
+              <input type="text" class="form-control" id="forgotIdentifier" placeholder="Masukkan username atau email Anda" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="forgotNewPass" class="form-label">Kata Sandi Baru</label>
+              <input type="password" class="form-control" id="forgotNewPass" placeholder="Minimal 6 karakter" minlength="6" required>
+            </div>
+
+            <div class="mb-4">
+              <label for="forgotConfirmPass" class="form-label">Konfirmasi Kata Sandi Baru</label>
+              <input type="password" class="form-control" id="forgotConfirmPass" placeholder="Ulangi kata sandi baru" minlength="6" required>
+            </div>
+
+            <button type="submit" class="btn btn-madrasah w-100 py-2" id="btnResetPass">
+              <i class="bi bi-check2-circle me-2"></i> Perbarui Kata Sandi
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- App & Storage Scripts -->
+<script src="js/github-api.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  await window.Storage.init();
+
+  // Redirect jika sudah login
+  const currentUser = window.Auth.getCurrentUser();
+  if (currentUser) {
+    window.location.href = 'dashboard.html';
+    return;
+  }
+
+  // Toggle Password View
+  const toggleBtn = document.getElementById('toggleLoginPass');
+  const passInput = document.getElementById('loginPassword');
+  toggleBtn.addEventListener('click', () => {
+    const isPass = passInput.type === 'password';
+    passInput.type = isPass ? 'text' : 'password';
+    toggleBtn.innerHTML = isPass ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+  });
+
+  // Switch card width when registration tab is clicked
+  const card = document.getElementById('authCardContainer');
+  document.getElementById('tab-register').addEventListener('shown.bs.tab', () => {
+    card.classList.add('auth-card-wide');
+  });
+  document.getElementById('tab-login').addEventListener('shown.bs.tab', () => {
+    card.classList.remove('auth-card-wide');
+  });
+  document.getElementById('tab-forgot').addEventListener('shown.bs.tab', () => {
+    card.classList.remove('auth-card-wide');
+  });
+
+  // Handle Login
+  document.getElementById('formLogin').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('btnLogin');
+    const id = document.getElementById('loginIdentifier').value;
+    const pass = document.getElementById('loginPassword').value;
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memverifikasi...';
+
+    try {
+      const user = await window.Auth.login(id, pass);
+      window.App.showToast(`Selamat datang, ${user.nama}!`, 'success');
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 700);
+    } catch (err) {
+      window.App.showToast(err.message || 'Gagal masuk.', 'danger');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-box-arrow-in-right me-2"></i> Masuk ke Sistem';
+    }
+  });
+
+  // Handle Register Guru
+  document.getElementById('formRegister').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('btnRegister');
+    const p1 = document.getElementById('regPassword').value;
+    const p2 = document.getElementById('regConfirmPassword').value;
+
+    if (p1 !== p2) {
+      window.App.showToast('Konfirmasi kata sandi tidak cocok!', 'warning');
+      return;
+    }
+
+    const userData = {
+      nama: document.getElementById('regNama').value.trim(),
+      nip: document.getElementById('regNip').value.trim(),
+      pangkat_golongan: document.getElementById('regGolongan').value.trim(),
+      mata_pelajaran: document.getElementById('regMapel').value.trim(),
+      jabatan: document.getElementById('regJabatan').value.trim(),
+      email: document.getElementById('regEmail').value.trim(),
+      password: p1
+    };
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Mendaftarkan...';
+
+    try {
+      await window.Auth.register(userData);
+      window.App.showToast('Pendaftaran akun berhasil diajukan! Akun Anda sedang menunggu verifikasi oleh Administrator Madrasah.', 'success');
+      document.getElementById('formRegister').reset();
+      
+      // Kembali ke tab login setelah 2 detik
+      setTimeout(() => {
+        const loginTab = new bootstrap.Tab(document.getElementById('tab-login'));
+        loginTab.show();
+      }, 2000);
+    } catch (err) {
+      window.App.showToast(err.message || 'Pendaftaran gagal.', 'danger');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-person-check me-2"></i> Ajukan Pendaftaran Akun';
+    }
+  });
+
+  // Handle Forgot Password
+  document.getElementById('formForgot').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('btnResetPass');
+    const id = document.getElementById('forgotIdentifier').value.trim();
+    const p1 = document.getElementById('forgotNewPass').value;
+    const p2 = document.getElementById('forgotConfirmPass').value;
+
+    if (p1 !== p2) {
+      window.App.showToast('Konfirmasi kata sandi baru tidak cocok!', 'warning');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Menyimpan...';
+
+    try {
+      await window.Auth.resetPassword(id, p1);
+      window.App.showToast('Kata sandi berhasil diperbarui! Silakan masuk dengan kata sandi baru.', 'success');
+      document.getElementById('formForgot').reset();
+      setTimeout(() => {
+        const loginTab = new bootstrap.Tab(document.getElementById('tab-login'));
+        loginTab.show();
+      }, 1500);
+    } catch (err) {
+      window.App.showToast(err.message || 'Gagal mereset kata sandi.', 'danger');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-check2-circle me-2"></i> Perbarui Kata Sandi';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
