@@ -1,23 +1,21 @@
 {
   "madrasah": {
-    "nama": "Madrasah Tsanawiyah Negeri 1 Teladan",
-    "alamat": "Jl. Pendidikan Islami No. 45, Kompleks Islamic Center, Jakarta",
-    "telp": "(021) 78901234 / 0812-3456-7890",
-    "email": "info@mtsn1teladan.sch.id",
-    "website": "https://mtsn1teladan.sch.id",
-    "nsm": "121131710001",
-    "npsn": "20108899",
-    "akreditasi": "A (Unggul)",
-    "kota": "Jakarta",
-    "logo": ""
+    "nama": "Madrasah Tsanawiyah Negeri 2 Garut",
+    "alamat": "Jln. Raya Wanakerta No. 28 Cibatu-Garut",
+    "telp": "(0262) 2860000",
+    "email": "mtsn2garut_2@kemenag.go.id",
+    "kota": "Garut",
+    "nsm": "121132050003",
+    "npsn": "20278245",
+    "logo": "https://cdn.phototourl.com/free/2026-09-23-7d703aa5-accc-4aa3-8bd9-8d45b55be181.png"
   },
   "kepala_madrasah": {
-    "nama": "Dr. H. Ahmad Dahlan, M.Pd.I",
-    "nip": "197508152000031002",
+    "nama": "H. Asep Sodikin, S.Pd., M.M.",
+    "nip": "197305071997031002",
     "pangkat_golongan": "Pembina Utama Muda / IV-c",
     "jabatan": "Kepala Madrasah"
   },
-  "tahun_pelajaran": "2025/2026",
+  "tahun_pelajaran": "2026/2027",
   "semester": "Ganjil",
   "kktp_default": 75,
   "github_config": {
