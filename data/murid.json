@@ -1,1 +1,110 @@
-[]
+[
+  {
+    "no_absen": "1",
+    "nis_lokal": "1,21132E+17",
+    "nama": "ABDAN ADLUANSYAH",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy0h5z",
+    "createdAt": "2026-09-23T08:29:12.264Z"
+  },
+  {
+    "no_absen": "2",
+    "nis_lokal": "1,21132E+17",
+    "nama": "ADINDA NATASYALY",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "P",
+    "id": "mur-mududcy1w0x",
+    "createdAt": "2026-09-23T08:29:12.265Z"
+  },
+  {
+    "no_absen": "3",
+    "nis_lokal": "1,21132E+17",
+    "nama": "AFIKA ALIFIA AZZAHRA",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "P",
+    "id": "mur-mududcy1vym",
+    "createdAt": "2026-09-23T08:29:12.265Z"
+  },
+  {
+    "no_absen": "4",
+    "nis_lokal": "1,21132E+17",
+    "nama": "AGMAL MAULANA IBRAHIM",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy278p",
+    "createdAt": "2026-09-23T08:29:12.266Z"
+  },
+  {
+    "no_absen": "5",
+    "nis_lokal": "1,21132E+17",
+    "nama": "AGUSTINA NOVITASARI",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "P",
+    "id": "mur-mududcy2ng4",
+    "createdAt": "2026-09-23T08:29:12.266Z"
+  },
+  {
+    "no_absen": "6",
+    "nis_lokal": "1,21132E+17",
+    "nama": "AL-FATH IBRAHIM AZIS",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy2v7y",
+    "createdAt": "2026-09-23T08:29:12.266Z"
+  },
+  {
+    "no_absen": "7",
+    "nis_lokal": "1,21132E+17",
+    "nama": "ALFIAN MUHAMAD NUGRAHA",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy34sw",
+    "createdAt": "2026-09-23T08:29:12.267Z"
+  },
+  {
+    "no_absen": "8",
+    "nis_lokal": "1,21132E+17",
+    "nama": "ANUGRAH RAMADHAN",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy4m1r",
+    "createdAt": "2026-09-23T08:29:12.268Z"
+  },
+  {
+    "no_absen": "9",
+    "nis_lokal": "1,21132E+17",
+    "nama": "ARDAN MAULANA AL-HABSYI",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy40hl",
+    "createdAt": "2026-09-23T08:29:12.268Z"
+  },
+  {
+    "no_absen": "10",
+    "nis_lokal": "1,21132E+17",
+    "nama": "ARYA ANUGRAH HANAFI",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy4isz",
+    "createdAt": "2026-09-23T08:29:12.268Z"
+  },
+  {
+    "no_absen": "11",
+    "nis_lokal": "1,21132E+17",
+    "nama": "AZIS MAULANA",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy54rr",
+    "createdAt": "2026-09-23T08:29:12.269Z"
+  },
+  {
+    "no_absen": "12",
+    "nis_lokal": "1,21132E+17",
+    "nama": "BAMBANG SATIA SODAQ",
+    "kelas_id": "kls-ixa",
+    "jenis_kelamin": "L",
+    "id": "mur-mududcy5h2h",
+    "createdAt": "2026-09-23T08:29:12.269Z"
+  }
+]
