@@ -22,11 +22,12 @@
     "email": "englishstudymts2@gmail.com",
     "passwordHash": "60c83f8a4e870bd13f54e4c1b5cdee2272d204c2302deb6192d737e8cefe8d08",
     "role": "guru",
-    "status": "menunggu_verifikasi",
+    "status": "terverifikasi",
     "jabatan": "Guru Mata Pelajaran",
     "mata_pelajaran": "Bahasa Inggris",
     "pangkat_golongan": "III-b",
     "nip": "199709282020121004",
-    "createdAt": "2026-09-23T05:28:24.569Z"
+    "createdAt": "2026-09-23T05:28:24.569Z",
+    "updatedAt": "2026-09-23T05:29:03.335Z"
   }
 ]
