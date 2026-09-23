@@ -4,13 +4,15 @@
     "nama": "Administrator Madrasah",
     "username": "admin",
     "email": "admin@madrasah.sch.id",
-    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "passwordHash": "60c83f8a4e870bd13f54e4c1b5cdee2272d204c2302deb6192d737e8cefe8d08",
     "role": "admin",
     "status": "terverifikasi",
     "jabatan": "Administrator Sistem",
     "mata_pelajaran": "-",
     "pangkat_golongan": "Pembina / IV-a",
     "nip": "198001012005011001",
-    "createdAt": "2026-01-01T08:00:00.000Z"
+    "createdAt": "2026-01-01T08:00:00.000Z",
+    "password": null,
+    "updatedAt": "2026-09-23T03:51:47.192Z"
   }
 ]
